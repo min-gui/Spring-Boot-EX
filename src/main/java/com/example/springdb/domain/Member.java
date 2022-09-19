@@ -3,14 +3,14 @@ package com.example.springdb.domain;
 import lombok.Data;
 
 @Data
-public class Memeber {
+public class Member {
 
     private String memberId;
     private int money;
 
-    public Memeber(){}
+    public Member(){}
 
-    public Memeber(String memberId, int money) {
+    public Member(String memberId, int money) {
         this.memberId = memberId;
         this.money = money;
     }
