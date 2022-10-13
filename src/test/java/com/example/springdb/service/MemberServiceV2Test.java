@@ -3,13 +3,16 @@ package com.example.springdb.service;
 import com.example.springdb.domain.Member;
 import com.example.springdb.repository.MemberRepositoryV1;
 import com.example.springdb.repository.MemberRepositoryV2;
+import com.example.springdb.repository.MemberRepositoryV3;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import java.sql.SQLException;
 
@@ -27,16 +30,17 @@ class MemberServiceV2Test {
     public static final String MEMBER_B = "memberB";
     public static final String MEMBER_EX = "ex";
 
-    private MemberRepositoryV2 memberRepository;
-    private MemberServiceV2 memberService;
+    private MemberRepositoryV3 memberRepository;
+    private MemberServiceV3_1 memberService;
 
 
     @BeforeEach
     void before() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource(URL,
                 USERNAME, PASSWORD);
-        memberRepository = new MemberRepositoryV2(dataSource);
-        memberService = new MemberServiceV2(dataSource, memberRepository);
+        memberRepository = new MemberRepositoryV3(dataSource);
+        PlatformTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
+        memberService = new MemberServiceV3_1(transactionManager, memberRepository);
     }
 
     @Test
