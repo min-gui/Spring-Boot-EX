@@ -1,10 +1,7 @@
 package com.example.springdb.service;
 
 import com.example.springdb.domain.Member;
-import com.example.springdb.repository.MemberRepositoryV1;
-import com.example.springdb.repository.MemberRepositoryV2;
 import com.example.springdb.repository.MemberRepositoryV3;
-import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,26 +17,24 @@ import static com.example.springdb.connection.ConnectionConst.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-/**
- * 트랜잭션 - 커넥션 파라미터 동기화 하기.
- */
 @Slf4j
-class MemberServiceV2Test {
+class MemberServiceV3_2Test {
 
     public static final String MEMBER_A = "memberA";
     public static final String MEMBER_B = "memberB";
     public static final String MEMBER_EX = "ex";
 
-    private MemberRepositoryV2 memberRepository;
-    private MemberServiceV2 memberService;
+    private MemberRepositoryV3 memberRepository;
+    private MemberServiceV3_2 memberService;
 
 
     @BeforeEach
     void before() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource(URL,
                 USERNAME, PASSWORD);
-        memberRepository = new MemberRepositoryV2(dataSource);
-        memberService = new MemberServiceV2(dataSource, memberRepository);
+        memberRepository = new MemberRepositoryV3(dataSource);
+        PlatformTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
+        memberService = new MemberServiceV3_2(transactionManager, memberRepository);
     }
 
     @Test
@@ -95,8 +90,6 @@ class MemberServiceV2Test {
         assertThat(findMemberA.getMoney()).isEqualTo(10000);
         assertThat(findMemberB.getMoney()).isEqualTo(10000);
 
-
     }
-
 
 }
