@@ -1,9 +1,7 @@
 package com.example.springdb.service;
 
 import com.example.springdb.domain.Member;
-import com.example.springdb.repository.MemberRepository;
-import com.example.springdb.repository.MemberRepositoryV3;
-import com.example.springdb.repository.MemberRepositoryV4_1;
+import com.example.springdb.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
@@ -47,20 +45,22 @@ class MemberServiceV4Test {
         private final DataSource dataSource;
 
         @Bean
-        MemberRepository memberRepository(){
-            return new MemberRepositoryV4_1(dataSource);
+        MemberRepository memberRepository() {
+//            return new MemberRepositoryV4_(dataSource);
+//            return new MemberRepositoryV4_2(dataSource);
+            return new MemberRepositoryV5(dataSource);
         }
 
         @Bean
-        MemberServiceV4 memberServiceV4(){
+        MemberServiceV4 memberServiceV4() {
             return new MemberServiceV4(memberRepository());
         }
     }
 
     @Test
-    void AopCheck(){
+    void AopCheck() {
         log.info("memberService class ={}", memberService.getClass());
-        log.info("memberRepository class ={}" , memberRepository.getClass());
+        log.info("memberRepository class ={}", memberRepository.getClass());
 
     }
 
@@ -107,7 +107,7 @@ class MemberServiceV4Test {
         memberRepository.save(membeEx);
 
         //when
-        assertThatThrownBy(()-> memberService.accountTransfer(memberA.getMemberId(), membeEx.getMemberId(), 2000))
+        assertThatThrownBy(() -> memberService.accountTransfer(memberA.getMemberId(), membeEx.getMemberId(), 2000))
                 .isInstanceOf(IllegalStateException.class);
 
         //then
