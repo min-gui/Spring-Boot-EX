@@ -7,11 +7,14 @@ import hello.itemservice.repository.ItemUpdateDto;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-
-public class MemoryItemRepository implements ItemRepository {
+@Repository
+public class JpaRepository implements ItemRepository {
 
     private static final Map<Long, Item> store = new HashMap<>(); //static
     private static long sequence = 0L; //static
@@ -20,7 +23,7 @@ public class MemoryItemRepository implements ItemRepository {
     public Item save(Item item) {
         item.setId(++sequence);
         store.put(item.getId(), item);
-        System.out.println("실행된다.");
+        System.out.println("실행된다.JPA");
         return item;
     }
 
