@@ -20,7 +20,6 @@ public class MemoryItemRepository implements ItemRepository {
     public Item save(Item item) {
         item.setId(++sequence);
         store.put(item.getId(), item);
-        System.out.println("실행된다.");
         return item;
     }
 
