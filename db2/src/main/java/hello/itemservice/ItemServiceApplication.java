@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Profile;
 //hello.itemservice.web 밑에만 컴포넌트 스캔
 //그이외 수동 등
 
-@Import(MemoryConfig.class)
+@Import(MyBatisConfig.class)
 @SpringBootApplication(scanBasePackages = "hello.itemservice.web")
 public class ItemServiceApplication {
 
