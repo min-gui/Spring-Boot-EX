@@ -1,5 +1,7 @@
 server:
-  port: 8081
+  #  랜덤포트
+  # 여러개를 실행시킨다 해도 목록에는 하나밖에 실행되지 않는다.
+  port: 0
 
 spring:
   application:
@@ -10,3 +12,6 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+  instance:
+    # 유레카에 등록할 인스턴스 아이디 화면에 보여진다.
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
