@@ -5,6 +5,13 @@ spring:
   application:
     name: user-service
 
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+      path: /h2-console
+
 eureka:
   instance:
     # 인스턴스 아이디 등록
