@@ -38,18 +38,19 @@ public class TrafficController {
         }
         return "ok";
     }
-//
-//    @Autowired
-//    DataSource dataSource;
-//
-//    @GetMapping("/jdbc")
-//    public String jdbc() throws SQLException {
-//        log.info("jdbc");
-//        Connection conn = dataSource.getConnection();
-//        log.info("connection info={}", conn);
-//        //conn.close(); //커넥션을 닫지 않는다.
-//        return "ok";
-//    }
+
+    @Autowired
+    DataSource dataSource;
+
+    //jdbc 커넥션 누수 확인
+    @GetMapping("/jdbc")
+    public String jdbc() throws SQLException {
+        log.info("jdbc");
+        Connection conn = dataSource.getConnection();
+        log.info("connection info={}", conn);
+        //conn.close(); //커넥션을 닫지 않는다.
+        return "ok";
+    }
 //
 //    @GetMapping("/error-log")
 //    public String errorLog() {
