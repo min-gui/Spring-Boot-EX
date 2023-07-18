@@ -27,16 +27,17 @@ public class TrafficController {
         return "ok value=" + value;
     }
 
-//    private List<String> list = new ArrayList<>();
+    private List<String> list = new ArrayList<>();
 
-//    @GetMapping("/jvm")
-//    public String jvm() {
-//        log.info("jvm");
-//        for (int i = 0; i < 1000000; i++) {
-//            list.add("hello jvm!" + i);
-//        }
-//        return "ok";
-//    }
+    //jvm heap 메모리 가득찼을경우
+    @GetMapping("/jvm")
+    public String jvm() {
+        log.info("jvm");
+        for (int i = 0; i < 1000000; i++) {
+            list.add("hello jvm!" + i);
+        }
+        return "ok";
+    }
 //
 //    @Autowired
 //    DataSource dataSource;
