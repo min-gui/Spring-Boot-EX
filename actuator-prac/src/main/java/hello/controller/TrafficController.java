@@ -52,9 +52,10 @@ public class TrafficController {
         return "ok";
     }
 //
-//    @GetMapping("/error-log")
-//    public String errorLog() {
-//        log.error("error log");
-//        return "error";
-//    }
+    //에러 로그 급증 확인
+    @GetMapping("/error-log")
+    public String errorLog() {
+        log.error("error log");
+        return "error";
+    }
 }
