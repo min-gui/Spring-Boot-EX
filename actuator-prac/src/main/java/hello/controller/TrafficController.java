@@ -15,8 +15,10 @@ import java.util.List;
 @RestController
 public class TrafficController {
 
+    // cpu 사용량 늘리기
     @GetMapping("cpu")
     public String cpu() {
+
         log.info("cpu");
         long value = 0;
         for (long i = 0; i < 1000000000000L; i++) {
@@ -25,32 +27,32 @@ public class TrafficController {
         return "ok value=" + value;
     }
 
-    private List<String> list = new ArrayList<>();
+//    private List<String> list = new ArrayList<>();
 
-    @GetMapping("/jvm")
-    public String jvm() {
-        log.info("jvm");
-        for (int i = 0; i < 1000000; i++) {
-            list.add("hello jvm!" + i);
-        }
-        return "ok";
-    }
-
-    @Autowired
-    DataSource dataSource;
-
-    @GetMapping("/jdbc")
-    public String jdbc() throws SQLException {
-        log.info("jdbc");
-        Connection conn = dataSource.getConnection();
-        log.info("connection info={}", conn);
-        //conn.close(); //커넥션을 닫지 않는다.
-        return "ok";
-    }
-
-    @GetMapping("/error-log")
-    public String errorLog() {
-        log.error("error log");
-        return "error";
-    }
+//    @GetMapping("/jvm")
+//    public String jvm() {
+//        log.info("jvm");
+//        for (int i = 0; i < 1000000; i++) {
+//            list.add("hello jvm!" + i);
+//        }
+//        return "ok";
+//    }
+//
+//    @Autowired
+//    DataSource dataSource;
+//
+//    @GetMapping("/jdbc")
+//    public String jdbc() throws SQLException {
+//        log.info("jdbc");
+//        Connection conn = dataSource.getConnection();
+//        log.info("connection info={}", conn);
+//        //conn.close(); //커넥션을 닫지 않는다.
+//        return "ok";
+//    }
+//
+//    @GetMapping("/error-log")
+//    public String errorLog() {
+//        log.error("error log");
+//        return "error";
+//    }
 }
