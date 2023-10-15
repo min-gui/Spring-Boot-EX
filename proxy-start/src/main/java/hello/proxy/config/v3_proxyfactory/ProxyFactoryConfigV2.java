@@ -51,7 +51,6 @@ public class ProxyFactoryConfigV2 {
         OrderRepositoryV2 proxy = (OrderRepositoryV2) factory.getProxy();
         log.info("ProxyFactory proxy = {}, target={}", proxy.getClass(), orderRepository.getClass());
 
-
         return proxy;
     }
     private Advisor getAdvisor(LogTrace logTrace) {
