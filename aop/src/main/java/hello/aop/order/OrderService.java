@@ -14,5 +14,9 @@ public class OrderService {
         log.info("[orderService] 실행");
         orderRepository.save(itemId);
     }
+
+    public void test() {
+        log.info("[orderService] test 실행");
+    }
 }
 
