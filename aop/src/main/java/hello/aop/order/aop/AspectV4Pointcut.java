@@ -5,13 +5,16 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 
+//Aspect 단위로 순서 보장 된다.
 @Slf4j
 @Aspect
 public class AspectV4Pointcut {
 
     //외부 포인트컷 사용
     //.. 은 하위패키지 모두 포함
+    @Order(1)
     @Around("hello.aop.order.aop.Pointcuts.allOrder()")
     public Object doLog(ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("[log] {}", joinPoint.getSignature()); //join point 시그니처
@@ -19,7 +22,9 @@ public class AspectV4Pointcut {
         return joinPoint.proceed();
     }
 
+
     //hello.aop.order 패키지와 하위 패키지 이면서 클래스 이름 패턴이 *Service.
+    @Order(2)
     @Around("hello.aop.order.aop.Pointcuts.orderAndService()")
     public Object doTransaction(ProceedingJoinPoint joinPoint) throws Throwable {
 
