@@ -196,11 +196,11 @@ public class ExecutionTest {
         assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
     }
 
-    //숫자와 무관하게 모든 파라미터, 모든 타입 허용
-    //(), (Xxx), (Xxx, Xxx)
+    //String 타입으로 시작, 숫자와 무관하게 모든 파라미터, 모든 타입 허용, 없어도 되고 무제한 이어도 돼
+    //(String), (String ,Xxx), (String ,Xxx, Xxx)
     @Test
-    void argsMatchAll() {
-        pointcut.setExpression("execution(* *(*))");
+    void argsMatchComplex() {
+        pointcut.setExpression("execution(* *(String, ..))");
         assertThat(pointcut.matches(helloMethod, MemberServiceImpl.class)).isTrue();
     }
 
