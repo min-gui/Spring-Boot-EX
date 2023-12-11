@@ -14,11 +14,29 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.
                 authorizeHttpRequests(authorizeRequests -> {
-                    authorizeRequests
-                            .anyRequest().authenticated();
+                    authorizeRequests.anyRequest()
+                            .authenticated();
                 })
-                .formLogin(formLogin ->{
-                }).build();
+                .formLogin(formLogin -> {
+                    formLogin
+                            //.loginPage("/loginPage")
+                            .defaultSuccessUrl("/")
+                            .failureUrl("/login")
+                            .usernameParameter("userId")
+                            .passwordParameter("passwd")
+                            .loginProcessingUrl("/login_proc")
+                            //로그인 성공 했을때
+//                            .successHandler((request, response, authentication) -> {
+//                                System.out.println("authentication" + authentication.getName());
+//                                response.sendRedirect("/");
+//                            })
+//                            .failureHandler(((request, response, exception) -> {
+//                                System.out.println("exception" + exception.getMessage());
+//                                response.sendRedirect("/login");
+//                            }))
+                            .permitAll();
+                })
+                .build();
 
     }
 }
