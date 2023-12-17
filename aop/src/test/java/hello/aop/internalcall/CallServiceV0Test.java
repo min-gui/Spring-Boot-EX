@@ -1,4 +1,4 @@
-package hello.aop.order.aop.internalcall;
+package hello.aop.internalcall;
 
 import hello.aop.internalcall.CallServiceV0;
 import hello.aop.internalcall.aop.CallLogAspect;
