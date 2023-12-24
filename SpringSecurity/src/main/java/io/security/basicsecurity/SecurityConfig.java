@@ -1,23 +1,41 @@
 package io.security.basicsecurity;
 
+import io.security.basicsecurity.config.PrincipalOauth2UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
-//@Configuration
-//@EnableWebSecurity
+@Configuration
+//@EnableWebSecurity 스프링 시큐리티 필터가 스프링 필터 체인에 등록됩니다.
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final PrincipalOauth2UserService principalOauth2UserService;
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.
                 authorizeHttpRequests(authorizeRequests -> {
                     authorizeRequests.anyRequest()
-                            .authenticated();
+                            .permitAll();
                 })
-                .formLogin(formLogin -> {
+                .oauth2Login(oauth -> oauth
+                        .loginPage("/test/loginPage")
+                        .userInfoEndpoint(userInfo ->
+                                userInfo
+                                        //구글 로그인이 완료된 뒤 후처리가 필요함. Tip. 코드X, (엑세스토큰+사용자프로필정보O)
+                                        .userService(principalOauth2UserService)
+                        )
+                )
+
+
+//                                auth2.loginPage("/test/loginPage")
+
+                /*.formLogin(formLogin -> {
                     formLogin
                             //.loginPage("/loginPage")
                             .defaultSuccessUrl("/")
@@ -35,7 +53,7 @@ public class SecurityConfig {
 //                                response.sendRedirect("/login");
 //                            }))
                             .permitAll();
-                })
+                })*/
                 .build();
 
     }

@@ -1,7 +1,9 @@
 package io.security.basicsecurity;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -15,10 +17,16 @@ public class SecurityController {
         return "home";
     }
 
-    @GetMapping("loginPage")
+    @GetMapping("/loginPage")
     public String loginPage() {
         log.info("테스트 입니다.");
-        return "loginPage";
+        return "redirect:/loginForm";
+    }
+
+    @GetMapping("/loginForm")
+    public String loginForm() {
+        log.info("테스트 입니다.");
+        return "html/loginForm";
     }
 
     @GetMapping("/test")
