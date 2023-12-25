@@ -1,6 +1,7 @@
 package io.security.basicsecurity;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,5 +35,11 @@ public class SecurityController {
 
         log.info("테스트 입니다.");
         throw new RuntimeException("test");
+    }
+
+    @GetMapping("/test/login")
+    public void testLogin(Authentication authentication) {
+        log.info("test/login 테스트 입니다. {}", authentication.getName());
+
     }
 }
