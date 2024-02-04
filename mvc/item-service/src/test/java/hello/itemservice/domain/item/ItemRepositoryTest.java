@@ -9,12 +9,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ItemRepositoryTest {
     ItemRepository itemRepository = new ItemRepository();
-
     @AfterEach
     void afterEach() {
         itemRepository.clearStore();
     }
-
     @Test
     void save() {
 //given
@@ -26,7 +24,6 @@ class ItemRepositoryTest {
         Item findItem = itemRepository.findById(item.getId());
         assertThat(findItem).isEqualTo(savedItem);
     }
-
     @Test
     void findAll() {
 //given
@@ -40,7 +37,6 @@ class ItemRepositoryTest {
         assertThat(result.size()).isEqualTo(2);
         assertThat(result).contains(item1, item2);
     }
-
     @Test
     void updateItem() {
 //given
@@ -54,4 +50,4 @@ class ItemRepositoryTest {
         //then
 
     }
-}
+    }
