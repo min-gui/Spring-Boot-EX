@@ -1,1 +1,1 @@
-# Spring EX(강의 들으면 작성한 코드)
+# Spring boot EX(스프링 부트 테스트 코드)
