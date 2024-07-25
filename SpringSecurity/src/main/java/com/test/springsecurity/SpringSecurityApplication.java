@@ -1,8 +1,7 @@
-package io.security.basicsecurity;
+package com.test.springsecurity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
 @SpringBootApplication
 public class SpringSecurityApplication {
