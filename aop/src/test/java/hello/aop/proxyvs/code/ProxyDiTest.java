@@ -1,7 +1,7 @@
 package hello.aop.proxyvs.code;
 
-import hello.aop.member.MemberService;
-import hello.aop.member.MemberServiceImpl;
+import hello.aop.sample.member.MemberService;
+import hello.aop.sample.member.MemberServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

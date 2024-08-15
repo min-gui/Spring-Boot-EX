@@ -1,7 +1,7 @@
 package hello.aop.proxyvs;
 
-import hello.aop.member.MemberService;
-import hello.aop.member.MemberServiceImpl;
+import hello.aop.sample.member.MemberService;
+import hello.aop.sample.member.MemberServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.aop.framework.ProxyFactory;
