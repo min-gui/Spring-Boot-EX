@@ -1,8 +1,10 @@
 package hello.aop.domain.repository;
 
-import hello.aop.domain.entity.ProdEntity;
-import hello.aop.domain.entity.ShopEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+import hello.aop.model.Shop;
 
-interface ShopRepository extends JpaRepository<ShopEntity, Long> {
+import java.util.List;
+
+public interface ShopRepository {
+
+    List<Shop> findShop(String ShopCd);
 }

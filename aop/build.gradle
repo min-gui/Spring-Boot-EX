@@ -45,6 +45,9 @@ dependencies {
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
 
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+	//하이버네이트 쿼리문 보기용. 운영시 제거 해야된다.
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6'
 }
 
 tasks.named('test') {
