@@ -1,8 +1,11 @@
 package hello.aop.controller;
 
+import hello.aop.annotation.ShopValidation;
 import hello.aop.model.ShopProductRes;
+import hello.aop.model.ShopVO;
 import hello.aop.service.ShopService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -33,10 +36,12 @@ public class ShopController {
             ),
     })
     public ShopProductRes getShop(@PathVariable(value = "shopCode") String shopCode,
-                                  @RequestParam(value = "serviceId") String serviceId) {
+                                  @RequestParam(value = "serviceId") String serviceId,
+                                  @Parameter(hidden = true) ShopVO shop) {
         log.info("shopCode : {}", shopCode);
         log.info("serviceId : {}", serviceId);
-
+        log.info("shop : {}", shop);
+        ShopVO shopVO = ShopVO.builder().shopCd(shopCode).build();
         shopService.getShopInfo(shopCode, serviceId);
         return ShopProductRes.builder()
                 .shopCode(shopCode)

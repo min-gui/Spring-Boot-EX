@@ -1,9 +1,12 @@
 package hello.aop.service;
 
+import hello.aop.annotation.ShopValidation;
 import hello.aop.domain.repository.ShopRepository;
 import hello.aop.domain.repository.ShopV1Repository;
 import hello.aop.domain.repository.ShopV2Repository;
 import hello.aop.model.Shop;
+import hello.aop.model.ShopVO;
+import hello.aop.sample.exam.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,9 @@ public class ShopService {
     private final ShopV2Repository shopV2Repository;
 
 
+
+
+    @ShopValidation
     public void getShopInfo(String shopCd, String serviceId) {
         ShopRepository shopRepository = getShopRepository(serviceId);
 
@@ -30,7 +36,6 @@ public class ShopService {
         list.forEach(shop -> log.info("shop info : {}", shop.getShopNm()));
         log.info("shop info : {}", list.size());
     }
-
 
     public ShopRepository getShopRepository(String serviceId) {
         ShopRepository shopRepository = null;
@@ -41,8 +46,5 @@ public class ShopService {
         }
         return shopRepository;
     }
-
-
-
 
 }
