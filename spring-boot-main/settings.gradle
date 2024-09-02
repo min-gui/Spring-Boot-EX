@@ -1,0 +1,5 @@
+rootProject.name = 'spring-boot-main'
+
+include 'api'
+include 'library'
+

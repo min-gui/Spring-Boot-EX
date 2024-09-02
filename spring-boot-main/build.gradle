@@ -1,0 +1,74 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.0'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'hello'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'org.springframework.boot'
+	apply plugin: 'io.spring.dependency-management'
+
+	configurations {
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
+
+	repositories {
+		mavenCentral()
+		// 필요한 경우 추가 레포지토리 설정
+		// maven { url "https://your-repo-url" }
+	}
+
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter'
+		implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+		implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//		implementation 'org.springframework.boot:spring-boot-starter-data-r2drbc'
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+		implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+		//mysql 연동
+		implementation 'mysql:mysql-connector-java:8.0.32'
+
+		compileOnly 'org.projectlombok:lombok'
+		annotationProcessor 'org.projectlombok:lombok'
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+		//테스트에서 lombok 사용
+		testCompileOnly 'org.projectlombok:lombok:'
+		testAnnotationProcessor 'org.projectlombok:lombok:'
+
+		// Swagger
+		implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+
+		implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+		//하이버네이트 쿼리문 보기용. 운영시 제거 해야된다.
+		implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6'
+	}
+
+	tasks.named('test') {
+		useJUnitPlatform()
+	}
+
+}
+
