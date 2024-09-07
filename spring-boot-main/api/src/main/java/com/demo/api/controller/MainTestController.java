@@ -1,5 +1,6 @@
 package com.demo.api.controller;
 
+import com.demo.api.service.TestService;
 import com.demo.api.util.HttpRequestUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 @RequestMapping(value = {"/"})
 public class MainTestController {
 
+    private final TestService testService;
+
     @GetMapping("/test")
     @Operation(summary = "테스트", description = "테스트 입니다.")
     public void mainTestV1(@RequestParam(name = "request") String request){
@@ -20,5 +23,8 @@ public class MainTestController {
         RequestContextHolder.getRequestAttributes();
         log.info("ip : {}", ip);
         log.info("request : {}", request);
+
+        testService.testVoid();
+
     }
 }

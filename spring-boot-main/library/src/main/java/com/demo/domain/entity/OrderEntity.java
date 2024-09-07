@@ -24,16 +24,24 @@ public class OrderEntity {
     /**
      * 매장코드||
      */
-//    @Column(name = "shop_cd")
+    @Column(name = "shop_cd")
     private String shopCd;
-
+    @Column(name = "sale_date")
     private LocalDate saleDate;
+    @Column(name = "order_no")
     private String orderNo;
+    @Column(name = "bill_no")
     private String billNo;
+    @Column(name = "prod_info")
     private String prodInfo;
+    @Column(name = "order_req_desc")
     private String orderReqDesc;
+    @Column(name = "ins_at")
     private LocalDateTime insAt;
+    @Column(name = "ins_id")
     private String insId;
+    @Column(name = "upd_at")
     private LocalDateTime updAt;
+    @Column(name = "upd_id")
     private String updId;
 }
