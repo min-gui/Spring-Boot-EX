@@ -49,6 +49,9 @@ subprojects {
 		//mysql 연동
 		implementation 'mysql:mysql-connector-java:8.0.32'
 
+		//Mybatis 연동
+		implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+
 		compileOnly 'org.projectlombok:lombok'
 		annotationProcessor 'org.projectlombok:lombok'
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'

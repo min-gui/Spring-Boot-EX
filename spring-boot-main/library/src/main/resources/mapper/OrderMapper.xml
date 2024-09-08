@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.demo.domain.repository.primary.mapper.OrderMapper">
+
+    <!-- SQL 쿼리 정의 -->
+    <select id="findById" resultType="com.demo.domain.dao.Order">
+        SELECT * FROM tb_order WHERE id = #{id}
+    </select>
+
+</mapper>
