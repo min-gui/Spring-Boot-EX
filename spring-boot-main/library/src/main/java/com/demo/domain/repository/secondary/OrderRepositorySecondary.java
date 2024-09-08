@@ -1,4 +1,4 @@
-package com.demo.domain.repository.secandary;
+package com.demo.domain.repository.secondary;
 
 import com.demo.domain.entity.OrderEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
