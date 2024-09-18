@@ -1,7 +1,9 @@
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.0'
+	id 'org.jetbrains.kotlin.jvm' version '1.9.10'  // Kotlin 플러그인 추가
 	id 'io.spring.dependency-management' version '1.1.4'
+	id 'org.jetbrains.kotlin.plugin.spring' version '1.9.10'  // Spring과 Kotlin 통합 플러그인 추가
 }
 
 group = 'hello'
@@ -24,6 +26,8 @@ subprojects {
 	apply plugin: 'java'
 	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'org.jetbrains.kotlin.jvm' // 각 모듈에 Kotlin 적용
+	apply plugin: 'org.jetbrains.kotlin.plugin.spring'
 
 	configurations {
 		compileOnly {
@@ -56,7 +60,7 @@ subprojects {
 		annotationProcessor 'org.projectlombok:lombok'
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-		//테스트에서 lombok 사용
+		// Lombok 테스트 지원
 		testCompileOnly 'org.projectlombok:lombok:'
 		testAnnotationProcessor 'org.projectlombok:lombok:'
 
@@ -65,8 +69,12 @@ subprojects {
 
 		implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
-		//하이버네이트 쿼리문 보기용. 운영시 제거 해야된다.
+		// 하이버네이트 쿼리 로깅 (운영 환경에서 제거 필요)
 		implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6'
+
+		// Kotlin 의존성 (각 모듈에서 Kotlin 코드를 사용할 수 있도록 공통 적용)
+		implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+		implementation "org.jetbrains.kotlin:kotlin-reflect"
 	}
 
 	tasks.named('test') {
