@@ -4,6 +4,10 @@
     <title>Thymeleaf with Kotlin</title>
 </head>
 <body>
-<h1 th:text="${data}">Hello, Thymeleaf!</h1>
+    <h1 th:text="${data} +'Hello. Thymeleaf'"></h1>
+    <button onclick="openPopUp()" id="popup">PopUp</button>
+    <button onclick="openImagePopup()" id="imagePopUp">imagePopUp</button>
+    <button onclick="openImagePopUpBtnUI()" id="imagePopUpBtnUI">imagePopUpBtnUI</button>
+    <script src="/js/test_popup.js"></script>
 </body>
 </html>

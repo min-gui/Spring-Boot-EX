@@ -1,0 +1,21 @@
+/* src/main/resources/static/css/styles.css */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 8px;
+    margin-bottom: 4px;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+}
+
+.buttons {
+    margin-left: auto;
+}
+
+button {
+    margin-left: 5px;
+}
