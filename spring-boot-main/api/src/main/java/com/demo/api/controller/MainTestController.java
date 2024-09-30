@@ -1,5 +1,6 @@
 package com.demo.api.controller;
 
+import com.demo.api.model.res.TestResponse;
 import com.demo.api.service.TestService;
 import com.demo.api.util.HttpRequestUtil;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,5 +27,16 @@ public class MainTestController {
 
         testService.testVoid();
 
+    }
+
+    @GetMapping("/test2")
+    @Operation(summary = "테스트2", description = "테스트 입니다.")
+    public TestResponse mainTestV2(@RequestParam(name = "request") String request){
+        String ip = HttpRequestUtil.getClientIpAddress();
+        RequestContextHolder.getRequestAttributes();
+        log.info("ip : {}", ip);
+        log.info("request : {}", request);
+
+        return TestResponse.builder().resultCode("0000").build();
     }
 }
